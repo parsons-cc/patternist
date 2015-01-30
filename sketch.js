@@ -35,5 +35,9 @@ function draw() {
 		// print to the console
 		print(output);
 
+	} else {
+
+		// stop drawing
+		noLoop();
 	}
 }
