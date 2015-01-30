@@ -7,10 +7,12 @@ function setup() {
 	numberLimit = 30;
 	totalFrames = 500;
 
+	// this tells p5 that we are not using the `canvas` element
 	noCanvas();
 }
 
 function draw() {
+	// start with an empty output
 	var output = "";
 
 	// do this only if we are uner our frame limit
@@ -19,13 +21,9 @@ function draw() {
 
 		if(number >= numberLimit) {
 			number = 1;
-			print("This is a line of text");
-			print("xx");
 		}
 
-		// clear the output string
-
-		// draw as many numbers
+		// draw a number the same times as its value
 		for(var i = 0; i < number; i++) {
 			output = output + number;
 		}
@@ -34,13 +32,8 @@ function draw() {
 		// number = number + 1;
 		number++;
 
+		// print to the console
 		print(output);
 
 	}
-}
-
-
-var outputs;
-function add() {
-
 }
