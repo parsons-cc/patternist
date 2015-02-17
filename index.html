@@ -10,8 +10,33 @@
 		<script language="javascript" type="text/javascript" src="p5/p5.min.js"></script>
 		<script language="javascript" type="text/javascript" src="p5/addons/p5.dom.js"></script>
 
-		<!-- this imports your sketch! -->
-		<script src="sketch.js" language="javascript" type="text/javascript"></script>
+		<!-- here's your sketch! -->
+		<script>
+		// we're in javascript land now!
+		// (notice the different style of comments)
+
+		// here is where you declare your vars, like:
+		// var one = 1;
+
+	 /**
+	 * Setup - this is where you get things ready before running the loop
+	 */
+		function setup() {
+			// this tells p5 that we are not using the
+			// `<canvas>` element (more on that later)
+			noCanvas();
+		}
+
+		/**
+		 * Here's the draw loop! This is where all the fun stuff happens.
+		 */
+		function draw() {
+			// this will continue to loop
+		}
+
+		// now leaving the land of javascript...
+		</script>
+		<!-- back to HTML -->
 
 		<style>
 			body {
