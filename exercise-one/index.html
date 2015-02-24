@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<!-- a head for all the heady/conceptual/meta stuff -->
+	<head>
+
+		<title>JavaScript Exercise #1</title>
+
+		<!-- this imports p5  -->
+		<script language="javascript" type="text/javascript" src="../p5/p5.min.js"></script>
+		<script language="javascript" type="text/javascript" src="../p5/addons/p5.dom.js"></script>
+
+		<!-- here's your sketch! -->
+		<script>
+		// -------------------------------------------------------------------------
+		// we're in javascript land now!
+		// (notice the different style of comments)
+
+		// set up our vars here
+
+		// this variable will keep track of what line we're on
+		var currentLine = 0;
+		// this is the total number of lines
+		var totalLines = 50;
+		// this is our output
+		var output = "Helloooooo!";
+
+
+		function setup() {
+			console.log("(start the program!)");
+			// this tells p5 that we are not using the `canvas` element
+			noCanvas();
+		}
+
+
+		// this is fired on every new frame.
+		function draw() {
+
+			// if we haven't reached our total number of lines
+			if(currentLine < totalLines) {
+
+				// output our variable, and the line we are in
+				console.log(output + ' ' + currentLine);
+
+				// increase the line #
+				currentLine = currentLine + 1;
+			}
+		}
+
+		// now leaving the land of javascript...
+		// -------------------------------------------------------------------------
+		</script>
+		<!-- back to HTML -->
+
+		<style>
+			body {
+				padding: 0;
+				margin: 0;
+			}
+		</style>
+
+	</head>
+
+	<!-- since we're using JavaScript, we can leave the body empty -->
+	<body>
+
+	</body>
+
+</html>

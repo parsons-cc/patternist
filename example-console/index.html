@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<!-- a head for all the heady/conceptual/meta stuff -->
+	<head>
+
+		<title><!-- your title goes here --></title>
+
+		<!-- this imports p5  -->
+		<script language="javascript" type="text/javascript" src="../p5/p5.min.js"></script>
+		<script language="javascript" type="text/javascript" src="../p5/addons/p5.dom.js"></script>
+
+		<!-- here's your sketch! -->
+		<script>
+		// we're in javascript land now!
+		// (notice the different style of comments)
+
+		// set up our vars here
+		var line;
+		var column;
+		var total_columns;
+		var total_lines;
+		var line_percent;
+		var column_percent;
+		var progress;
+		var output;
+
+
+		function setup() {
+
+			// we're starting on the first line
+			line = 0;
+			// and the first column
+			column = 0;
+
+			// set our limits
+			total_columns = 40;
+			total_lines = 100;
+
+			//
+			output = '';
+
+			// this tells p5 that we are not using the `canvas` element
+			noCanvas();
+		}
+
+
+		// this is fired on every new frame.
+		function draw() {
+
+			// if we haven't reached our total number of lines
+			if(line < total_lines) {
+
+				// figure out how far along we are in lines
+				// (will be a number between 0 and 1)
+				line_percent = line / total_lines;
+
+				// loop through while there's still columns left!
+				// this will loop through and add a character to the end
+				// of the output string.
+				while(column < total_columns) {
+
+					// figure out how far long we are in columns
+					// (also a number between 0 and 1)
+					column_percent = column / total_columns;
+
+					// total progress of lines and columns
+					// (still a number between 0 and 1)
+					progress = (line_percent + column_percent) / 2;
+
+					// if we're less than 10% done
+					if(progress < 0.1) {
+						output = output + ':(';
+
+					// else if we're less than 30% done
+					} else if (progress < 0.3) {
+						output = output + ':|';
+
+					// else if we're less than 50%
+					} else if (progress < 0.5) {
+						output = output + ':/';
+
+					// if we're less than 80%...
+					} else if (progress < 0.8) {
+						output = output + ':)';
+
+					// otherwise...
+					} else {
+						output = output + ":P";
+					}
+
+					// add a space at the end
+					output = output + ' ';
+
+					// increment our value for `column` so we don't end up
+					// in an infinite loop!
+					column = column + 1;
+				}
+
+				// output to the console!
+				createDiv(output);
+
+				// reset our output and column vars
+				output = '';
+				column = 0;
+
+				// increment our value for `line` so we don't end up
+				// in an infinite loop!
+				line = line + 1;
+
+			}
+		}
+
+		// now leaving the land of javascript...
+		</script>
+		<!-- back to HTML -->
+
+		<style>
+			body {
+				padding: 0;
+				margin: 0;
+				font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+				text-align: center;
+				font-size: 200%;
+				color: blue;
+			}
+		</style>
+
+	</head>
+
+	<!-- a body for the meat/data/content -->
+	<body>
+
+	</body>
+
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<!-- a head for all the heady/conceptual/meta stuff -->
+	<head>
+
+		<title>JavaScript Exercise #3</title>
+
+		<!-- this imports p5  -->
+		<script language="javascript" type="text/javascript" src="../p5/p5.min.js"></script>
+		<script language="javascript" type="text/javascript" src="../p5/addons/p5.dom.js"></script>
+
+		<!-- here's your sketch! -->
+		<script>
+		// -------------------------------------------------------------------------
+		// we're in javascript land now!
+		// (notice the different style of comments)
+
+		// set up our vars here
+
+		// this variable will keep track of what line we're on
+		var currentLine = 0;
+		// this is the total number of lines
+		var totalLines = 50;
+		// this is our output
+		var output = "";
+
+
+
+
+		function setup() {
+			// this tells p5 that we are not using the `canvas` element
+			noCanvas();
+		}
+
+
+		// this is fired on every new frame.
+		function draw() {
+
+			// what type of element will we make?
+			var elementTag = "span";
+			// add a CSS class
+			var elementClass = "";
+
+			// if we haven't reached our total number of lines
+			if(currentLine < totalLines) {
+
+				// if the current line is 0
+				if(currentLine == 0) {
+					output = "Hello!";
+					elementClass = "greeting";
+					elementTag = 'h1';
+
+				// if it's the last line
+				} else if ( currentLine == totalLines - 1) {
+					output = "Well goodbye then.";
+					elementClass = "farewell";
+					elementTag = 'p';
+
+				// the % character (also known as "modulus") divides the second number
+				// into the first number, and then returns the remainder:
+				// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Arithmetic_Operators#Remainder
+				//
+				// so this will only be true if the current line is a multiple of 2,
+				// since then it won't have a remainder
+				} else if ( currentLine % 2 == 0) {
+					output = "... are you there?...";
+
+				// same as above, but a multiple of three
+				// http://copypastecharacter.com/
+				} else if ( currentLine % 3 == 0) {
+					output = "... &#9835;&#9834;&#9836; ...";
+
+				} else if ( currentLine > totalLines / 2) {
+					output = "Hello?";
+
+				// otherwise, our default option
+				} else {
+					output = "It's me!"
+					elementClass = "introduction";
+				}
+
+				// output the result
+
+				// use p5.js `createElement` instead of console.log to output HTML
+				// `elementTag` is the HTML tag to output
+				// `output` is the contents
+				element = createElement(elementTag, output);
+
+				// add a class to the element that we can use in CSS
+				// `elementClass` is a String (text) that we use to assign
+				element.addClass(elementClass);
+
+				currentLine = currentLine + 1;
+			}
+		}
+
+		// now leaving the land of javascript...
+		// -------------------------------------------------------------------------
+		</script>
+		<!-- back to HTML -->
+
+		<style>
+			body {
+				padding: 0;
+				margin: 0;
+
+				/* notice custom styles here */
+				font-size: 200%;
+				font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+			}
+
+			/**
+			 * Classes below are assigned using `element.addClass` in the JavaScript
+			 */
+			.greeting {
+				font-weight: bold;
+			}
+			.introduction {
+				color: red;
+			}
+			.farewell {
+				font-style: italic;
+			}
+
+		</style>
+
+	</head>
+
+	<!-- since we're using JavaScript, we can leave the body empty -->
+	<body>
+
+	</body>
+
+</html>
