@@ -26,8 +26,6 @@
 		var output = "";
 
 
-
-
 		function setup() {
 			// this tells p5 that we are not using the `canvas` element
 			noCanvas();
@@ -37,7 +35,7 @@
 		// this is fired on every new frame.
 		function draw() {
 
-			// what type of element will we make?
+			// what type of element (HTML tag) will we make?
 			var elementTag = "span";
 			// add a CSS class
 			var elementClass = "";
@@ -51,26 +49,29 @@
 					elementClass = "greeting";
 					elementTag = 'h1';
 
-				// if it's the last line
+				// if it's the last line, print farewell
 				} else if ( currentLine == totalLines - 1) {
 					output = "Well goodbye then.";
 					elementClass = "farewell";
 					elementTag = 'p';
 
-				// the % character (also known as "modulus") divides the second number
-				// into the first number, and then returns the remainder:
+				// the % operator (also known as "modulus") gives us the remainder when
+				// dividing one number into another:
 				// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Arithmetic_Operators#Remainder
 				//
-				// so this will only be true if the current line is a multiple of 2,
-				// since then it won't have a remainder
+				// so this will only be true if the current line is a multiple of 2
+				// (since then it won't have a remainder)
 				} else if ( currentLine % 2 == 0) {
 					output = "... are you there?...";
 
 				// same as above, but a multiple of three
 				// http://copypastecharacter.com/
 				} else if ( currentLine % 3 == 0) {
+
+					// found the icons using http://copypastecharacter.com
 					output = "... &#9835;&#9834;&#9836; ...";
 
+				// if we're over halfway done
 				} else if ( currentLine > totalLines / 2) {
 					output = "Hello?";
 
@@ -88,9 +89,9 @@
 				element = createElement(elementTag, output);
 
 				// add a class to the element that we can use in CSS
-				// `elementClass` is a String (text) that we use to assign
 				element.addClass(elementClass);
 
+				// increase the line number
 				currentLine = currentLine + 1;
 			}
 		}
@@ -111,7 +112,9 @@
 			}
 
 			/**
-			 * Classes below are assigned using `element.addClass` in the JavaScript
+			 * Using class selector to apply CSS rules
+			 *
+			 * http://www.tizag.com/cssT/class.php
 			 */
 			.greeting {
 				font-weight: bold;
