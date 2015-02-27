@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<!-- a head for all the heady/conceptual/meta stuff -->
+	<head>
+
+		<title>JavaScript Exercise #3</title>
+
+		<!-- this imports p5  -->
+		<script language="javascript" type="text/javascript" src="../p5/p5.min.js"></script>
+		<script language="javascript" type="text/javascript" src="../p5/addons/p5.dom.js"></script>
+
+		<!-- here's your sketch! -->
+		<script>
+		// -------------------------------------------------------------------------
+		// we're in javascript land now!
+		// (notice the different style of comments)
+
+		// set up our vars here
+
+		// this variable will keep track of what line we're on
+		var currentLine = 0;
+		// this is the total number of lines
+		var totalLines = 1200;
+
+		var characters = [
+			"&#9475;",
+			"&#9487;",
+			"&#9491;",
+			"&#9499;",
+			"&#9507;",
+			"&#9515;",
+			"&#9523;",
+			"&#9547;"
+		];
+
+
+		function setup() {
+
+			lastColor = color(255);
+
+			// this tells p5 that we are not using the `canvas` element
+			noCanvas();
+		}
+
+
+		// this is fired on every new frame.
+		function draw() {
+
+			// if we haven't reached our total number of lines
+			if(currentLine < totalLines) {
+
+				index = floor(random(characters.length));
+
+				var randColor = color(
+					floor(random(255)),
+					floor(random(255)),
+					floor(random(255))
+				)
+				var newColor = lerpColor(lastColor, randColor, 0.5);
+				lastColor = newColor;
+				var element = createElement('span', characters[index]);
+				element.style("color", newColor.colorString);
+
+				currentLine = currentLine + 1;
+			}
+		}
+
+		// now leaving the land of javascript...
+		// -------------------------------------------------------------------------
+		</script>
+		<!-- back to HTML -->
+
+		<style>
+			body {
+				padding: 0;
+				margin: 0;
+				word-wrap: break-word;
+
+				/* notice custom styles here */
+				font-size: 300%;
+				line-height: 0.9em;
+				letter-spacing: 0px;
+				color: #333;
+				background: #fff;
+				font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+			}
+
+
+		</style>
+
+	</head>
+
+	<!-- since we're using JavaScript, we can leave the body empty -->
+	<body>
+
+	</body>
+
+</html>

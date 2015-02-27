@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<!-- a head for all the heady/conceptual/meta stuff -->
+	<head>
+
+		<title>JavaScript Exercise #3</title>
+
+		<!-- this imports p5  -->
+		<script language="javascript" type="text/javascript" src="../p5/p5.min.js"></script>
+		<script language="javascript" type="text/javascript" src="../p5/addons/p5.dom.js"></script>
+
+		<!-- here's your sketch! -->
+		<script>
+		// -------------------------------------------------------------------------
+		// we're in javascript land now!
+		// (notice the different style of comments)
+
+		// set up our vars here
+
+		// this variable will keep track of what line we're on
+		var currentLine = 0;
+		// this is the total number of lines
+		var totalLines = 1200;
+
+		var characters = [
+			"&middot;&middot;&middot;", // ···
+			"&#8942;&#8942;", // ⋮⋮
+			"&#9617;", // ░
+			"&#9618;", // ▒
+			"&#9619;", // ▓
+			"&#9608;" // █
+		];
+
+
+		function setup() {
+			// this tells p5 that we are not using the `canvas` element
+			noCanvas();
+		}
+
+
+		// this is fired on every new frame.
+		function draw() {
+
+			// if we haven't reached our total number of lines
+			if(currentLine < totalLines) {
+
+
+				// what we want to do here is use the characters array
+
+				if(currentLine < totalLines / 2) {
+					// the map function will take a value within a certain range, and map
+					// that value to another range
+					// http://p5js.org/reference/#/p5/map
+					index = map(
+						// our value
+						currentLine,
+						// the low value of the current range
+						0,
+						// the high value of the current range
+						totalLines/2,
+						// the low value of the new range
+						0,
+						// the high value of the new range
+						characters.length
+					);
+				} else {
+					// same as above, but we are using a different value (totalLines - currentLine)
+					// and removed the comments
+					index = map(totalLines-currentLine, 0, totalLines/2, 0, characters.length);
+				}
+
+				// this will round the index down if it's a decimal
+				// http://p5js.org/reference/#/p5/floor
+				index = floor(index);
+
+				var element = createElement('a', characters[index]);
+
+				currentLine = currentLine + 1;
+			}
+		}
+
+		// now leaving the land of javascript...
+		// -------------------------------------------------------------------------
+		</script>
+		<!-- back to HTML -->
+
+		<style>
+			body {
+				text-align: center;
+				padding: 0;
+				margin: 0;
+				word-wrap: break-word;
+
+				/* notice custom styles here */
+				font-size: 300%;
+				letter-spacing: 0px;
+				color: #F536FF;
+				background: #000;
+				font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+			}
+
+			a::selection {
+				color: #fff;
+			}
+
+			a:hover {
+				color: #fff;
+			}
+		</style>
+
+	</head>
+
+	<!-- since we're using JavaScript, we can leave the body empty -->
+	<body>
+
+	</body>
+
+</html>
