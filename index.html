@@ -16,12 +16,17 @@
 		// (notice the different style of comments)
 
 		// here is where you declare your vars, like:
-		// var one = 1;
+		var lineNumber = 0;
+		var maxLines = 20;
+
 
 	 /**
 	 * Setup - this is where you get things ready before running the loop
 	 */
 		function setup() {
+
+
+
 			// this tells p5 that we are not using the
 			// `<canvas>` element (more on that later)
 			noCanvas();
@@ -32,7 +37,33 @@
 		 */
 		function draw() {
 			// this will continue to loop
-		}
+			if (lineNumber < maxLines) {
+
+					if(lineNumber == 0) {
+						output = "Hello";
+				}
+
+					else if(lineNumber == 1) {
+						output = "Good Bye";
+				}
+
+					else if(lineNumber == 2) {
+							output = "No";
+				}
+
+					console.log(output);
+					lineNumber = lineNumber + 1;
+				}
+			}
+
+
+
+
+
+
+			//we want to programmatically
+			//add a row of 100 characters
+
 
 		// now leaving the land of javascript...
 		</script>
