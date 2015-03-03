@@ -13,10 +13,12 @@
 		<!-- here's your sketch! -->
 		<script>
 		// we're in javascript land now!
-		// (notfice the different style of comments)
+		// (notice the different style of comments)
 
 		// here is where you declare your vars, like:
 		// var one = 1;
+		var lineNumber = 0;
+		var maxLines = 20;
 
 	 /**
 	 * Setup - this is where you get things ready before running the loop
@@ -32,6 +34,18 @@
 		 */
 		function draw() {
 			// this will continue to loop
+			if(lineNumber < maxLines) {
+				
+				if(lineNumber < 10) {
+					output = "beginning";
+				} else if(lineNumber == 10) {
+					output = "middle";
+				} else {
+					output = "end";
+				}
+				createElement('p', output);
+				lineNumber = lineNumber + 1;
+			}
 		}
 
 		// now leaving the land of javascript...
