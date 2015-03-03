@@ -4,6 +4,7 @@
 	<!-- a head for all the heady/conceptual/meta stuff -->
 	<head>
 
+
 		<title><!-- your title goes here --></title>
 
 		<!-- this imports p5  -->
@@ -16,12 +17,16 @@
 		// (notice the different style of comments)
 
 		// here is where you declare your vars, like:
-		// var one = 1;
+		//var one = 1;
 
 	 /**
 	 * Setup - this is where you get things ready before running the loop
 	 */
 		function setup() {
+			outputNumber = 0;
+			maxOutputNumber = 50;
+			output = '|';
+			console.log("Working");
 			// this tells p5 that we are not using the
 			// `<canvas>` element (more on that later)
 			noCanvas();
@@ -30,8 +35,52 @@
 		/**
 		 * Here's the draw loop! This is where all the fun stuff happens.
 		 */
-		function draw() {
+
+		function draw()
+		{
+
+			while (outputNumber < 99)
+			{
+				var htmlTag = 'marquee';
+				var cssClass = '';
+
+
 			// this will continue to loop
+				if (outputNumber <= maxOutputNumber)
+				{
+
+					//console.log(output);
+					htmlTag = 'marquee'
+					createElement(htmlTag, output)
+
+					if ((outputNumber % 2) == 0)
+					{
+						output = output + '/';
+					}
+
+					else
+					{
+						output = output + '|';
+					}
+					outputNumber++;
+				}
+				else if (outputNumber < 100)
+				{
+					//console.log(output);
+					htmlTag = 'marquee'
+					createElement(htmlTag, output)
+					if ((outputNumber % 2) == 0)
+					{
+						output = output + "[]";
+					}
+
+					else
+					{
+						output = output + ')(';
+					}
+					outputNumber++;
+				}
+			}
 		}
 
 		// now leaving the land of javascript...
@@ -43,7 +92,10 @@
 				padding: 0;
 				margin: 0;
 				font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
-				font-size: 200%;
+				font-size: 25%;
+			}
+		marquee {
+			marquee-speed: 10;
 			}
 		</style>
 
