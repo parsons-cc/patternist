@@ -12,12 +12,15 @@
 
 		<!-- here's your sketch! -->
 		<script>
+		var lineNumber = 0;
+		var maxLines = 50;
+    var columnNumber = 0;
+    var maxColumn = 100;
+		var output = '';
 		// we're in javascript land now!
 		// (notice the different style of comments)
-
 		// here is where you declare your vars, like:
 		// var one = 1;
-
 	 /**
 	 * Setup - this is where you get things ready before running the loop
 	 */
@@ -26,14 +29,55 @@
 			// `<canvas>` element (more on that later)
 			noCanvas();
 		}
-
 		/**
 		 * Here's the draw loop! This is where all the fun stuff happens.
 		 */
 		function draw() {
 			// this will continue to loop
-		}
+			if (lineNumber < maxLines) {
 
+				var htmlTag = "div";
+				var cssClass = '';
+        var lineRemainder = lineNumber % 5;
+
+
+
+
+          while (columnNumber < maxColumn) {
+            if (columnNumber < 20) {
+            output = output + "/";
+          } else if (columnNumber < 40) {
+            output = output + "|";
+          } else if (columnNumber < 60) {
+            output = output + "/";
+          } else if (columnNumber < 80) {
+            output = output + "|";
+          } else {
+            output = output + "/";
+          }
+          columnNumber = columnNumber + 1;
+          }
+
+        var element = createElement(htmlTag, output);
+				if (lineRemainder == 0) {
+          element.style("color", "#000080");
+				} else if (lineRemainder == 1) {
+          element.style("color", "#6B8E23");
+				} else if (lineRemainder == 2) {
+          element.style("color", "#FFA500");
+				}	else if (lineRemainder == 3) {
+          element.style("color", "#FF4500");
+				} else if (lineRemainder == 4) {
+          element.style("color", "#DA70D6");
+				}
+
+
+
+        output = '';
+				lineNumber = lineNumber + 1;
+        columnNumber = 0
+			}
+		}
 		// now leaving the land of javascript...
 		</script>
 		<!-- back to HTML -->
@@ -44,6 +88,7 @@
 				margin: 0;
 				font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
 				font-size: 200%;
+				color: black;
 			}
 		</style>
 
