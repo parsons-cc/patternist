@@ -23,6 +23,7 @@
 		// this is the total number of lines
 		var totalLines = 1200;
 
+		// found these using http://copypastecharacter.com
 		var characters = [
 			"&#9475;",
 			"&#9487;",
@@ -37,6 +38,9 @@
 
 		function setup() {
 
+			// p5 color takes RGB values, each between 0 and 255
+			// (this will be white, or (255, 255, 255))
+			// http://p5js.org/reference/#/p5/color
 			lastColor = color(255);
 
 			// this tells p5 that we are not using the `canvas` element
@@ -51,12 +55,17 @@
 			if(currentLine < totalLines) {
 
 				index = floor(random(characters.length));
-
+				
+				// p5 color takes RGB values, each between 0 and 255
+				// http://p5js.org/reference/#/p5/color
 				var randColor = color(
 					floor(random(255)),
 					floor(random(255)),
 					floor(random(255))
 				)
+				
+				// p5 lerpColor "fades" between two colors
+				// http://p5js.org/reference/#/p5/lerpColor
 				var newColor = lerpColor(lastColor, randColor, 0.5);
 				lastColor = newColor;
 				var element = createElement('span', characters[index]);
@@ -75,6 +84,11 @@
 			body {
 				padding: 0;
 				margin: 0;
+				
+				/* 
+				  this allows the characters to break at the end of the window,
+				  instead of wrapping accross the page
+				*/
 				word-wrap: break-word;
 
 				/* notice custom styles here */

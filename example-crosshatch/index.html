@@ -22,7 +22,8 @@
 		var currentLine = 0;
 		// this is the total number of lines
 		var totalLines = 1200;
-
+		
+		// found these at http://copypastecharacter.com
 		var characters = [
 			"&middot;&middot;&middot;", // ···
 			"&#8942;&#8942;", // ⋮⋮
@@ -90,6 +91,11 @@
 				text-align: center;
 				padding: 0;
 				margin: 0;
+				
+				/* 
+				  this allows the characters to break at the end of the window,
+				  instead of wrapping accross the page
+				*/
 				word-wrap: break-word;
 
 				/* notice custom styles here */
@@ -100,10 +106,18 @@
 				font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
 			}
 
+			/* 
+			   this sets the color when a link is selected
+			   https://developer.mozilla.org/en-US/docs/Web/CSS/::selection
+			*/
 			a::selection {
 				color: #fff;
 			}
 
+			/*
+			  this sets the color on hover
+			  http://www.w3schools.com/css/css_pseudo_classes.asp
+			*/
 			a:hover {
 				color: #fff;
 			}
