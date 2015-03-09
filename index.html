@@ -24,12 +24,13 @@
 	 */
 		function setup() {
 			outputNumber = 0;
-			maxOutputNumber = 50;
-			output = '|';
+			maxOutputNumber = 27;
+			output = '/';
 			console.log("Working");
 			// this tells p5 that we are not using the
 			// `<canvas>` element (more on that later)
 			noCanvas();
+			iteration = 0;
 		}
 
 		/**
@@ -39,49 +40,64 @@
 		function draw()
 		{
 
-			while (outputNumber < 99)
+			function printOut() {
+				console.log("We are now printing ");
+				console.log(output);
+			}
+			/*function mouseClicked() {
+				maxOutputNumber = maxOutputNumber - 20
+				console.log("hello");
+			}*/
+			while (outputNumber < 60)
 			{
+				function mouseClicked() {
+					maxOutputNumber = maxOutputNumber - 20
+					console.log("hello");
+				}
 				var htmlTag = 'marquee';
-				var cssClass = '';
-
-
+				var cssClass = 'body';
 			// this will continue to loop
+
 				if (outputNumber <= maxOutputNumber)
 				{
 
 					//console.log(output);
-					htmlTag = 'marquee'
+					//htmlTag = 'marquee'
 					createElement(htmlTag, output)
+					//htmlTag.style('color', 'blue');
 
 					if ((outputNumber % 2) == 0)
 					{
-						output = output + '/';
+						output = output + ' &#864;';
 					}
 
 					else
 					{
-						output = output + '|';
+						output = output + " &#3861;";
 					}
 					outputNumber++;
+					printOut();
 				}
-				else if (outputNumber < 100)
+
+				else if (outputNumber < 60)
 				{
-					//console.log(output);
-					htmlTag = 'marquee'
+					//cssClass.style("color", "blue");
 					createElement(htmlTag, output)
 					if ((outputNumber % 2) == 0)
 					{
-						output = output + "[]";
+						output = output + " &#3901;";
 					}
 
 					else
 					{
-						output = output + ')(';
+						output = output + ' &#4172;';
 					}
 					outputNumber++;
+					printOut();
 				}
 			}
 		}
+
 
 		// now leaving the land of javascript...
 		</script>
@@ -92,10 +108,9 @@
 				padding: 0;
 				margin: 0;
 				font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
-				font-size: 25%;
-			}
-		marquee {
-			marquee-speed: 10;
+				font-size: 75%;
+				color: #58D3F7;
+				line-height: .95;
 			}
 		</style>
 
