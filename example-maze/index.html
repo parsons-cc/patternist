@@ -20,6 +20,7 @@
 
 		// this variable will keep track of what line we're on
 		var currentLine = 0;
+
 		// this is the total number of lines
 		var totalLines = 1200;
 
@@ -54,23 +55,58 @@
 			// if we haven't reached our total number of lines
 			if(currentLine < totalLines) {
 
-				index = floor(random(characters.length));
-				
-				// p5 color takes RGB values, each between 0 and 255
+				// this is the part where we get a random array index
+				// so that we can get a random character from our selection
+
+				// first let's get the total number of items
+				// in the `characters` array
+				var maxIndex = characters.length;
+				// use the `random` p5 function to get a random index
+				// as a decimal number
+				// http://p5js.org/reference/#/p5/random
+				var randomIndexDecimal = random(index);
+				// next we use the `floor` p5 function to round down
+				// to the nearest integer (whole number)
+				// http://p5js.org/reference/#/p5/floor
+				var index = floor(characters.length);
+
+				// the abolve could also be written as:
+				// var index = floor(random(character.length));
+
+
+				// getting a random color here
+				// p5 `color` takes RGB values, each between 0 and 255
 				// http://p5js.org/reference/#/p5/color
 				var randColor = color(
 					floor(random(255)),
 					floor(random(255)),
 					floor(random(255))
-				)
-				
-				// p5 lerpColor "fades" between two colors
+				);
+
+				// here we want to use p5's `lerpColor` to get a color
+				// mix between the current random color and the last color.
+				// this will result in a 50% mix between `lastColor` and `randColor`
 				// http://p5js.org/reference/#/p5/lerpColor
 				var newColor = lerpColor(lastColor, randColor, 0.5);
-				lastColor = newColor;
-				var element = createElement('span', characters[index]);
+
+				// to get the current (random) character, we grab an item
+				// from the array using the value of `index`
+				var newCharacter = characters[index];
+
+				// new we can create an element on the page and save a reference
+				// to it in the variable `element`
+				var element = createElement('span', newCharacter);
+
+				// new we'll set the `color` CSS attribute using the new color
+				// we have to use `newColor.colorString`, which will output
+				// a CSS-friendly string like "rgb(255,255,255)"
 				element.style("color", newColor.colorString);
 
+				// save our current color so we can use it next time
+				lastColor = newColor;
+
+				// keep incrementing the line number so that we don't
+				// go on forever!
 				currentLine = currentLine + 1;
 			}
 		}
@@ -84,8 +120,8 @@
 			body {
 				padding: 0;
 				margin: 0;
-				
-				/* 
+
+				/*
 				  this allows the characters to break at the end of the window,
 				  instead of wrapping accross the page
 				*/
