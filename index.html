@@ -1,57 +1,115 @@
 <!DOCTYPE html>
 <html lang="en">
 
-	<!-- a head for all the heady/conceptual/meta stuff -->
-	<head>
+  <!-- a head for all the heady/conceptual/meta stuff -->
+  <head>
 
-		<title><!-- your title goes here --></title>
+    <title>Small Pattern Sample</title>
 
-		<!-- this imports p5  -->
-		<script language="javascript" type="text/javascript" src="p5/p5.min.js"></script>
-		<script language="javascript" type="text/javascript" src="p5/addons/p5.dom.js"></script>
+    <!-- this imports p5  -->
+    <script language="javascript" type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.2/p5.min.js"></script>
+    <script language="javascript" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.2/addons/p5.dom.js"></script>
+    <link href='http://fonts.googleapis.com/css?family=Arvo:400,400italic' rel='stylesheet' type='text/css'>
+    <!-- here's your sketch! -->
+    <script>
+    // we're in javascript land now!
+    // (notice the different style of comments)
 
-		<!-- here's your sketch! -->
-		<script>
-		// we're in javascript land now!
-		// (notice the different style of comments)
+    // here is where you declare your vars, like:
+    // var one = 1;
+      var line_Number;
+      var column = 0;
+      var totalColumn = 200;
+      var line_Number_percent;
+      var line_Number;
+      var output = "";
+      var elementTag = "span";
+      var elementClass = "";
+      var line_Number = 0;
+      var totalline_Number = 100;
+   /**
+   * Setup - this is where you get things ready before running the loop
+   */
+    function setup() {
+      // this tells p5 that we are not using the
+      // `<canvas>` element (more on that later)
+      noCanvas();
+      //function should, given a tag, content, and css style,
+      //output on HTML Tag
+    //  function output Tag(){
 
-		// here is where you declare your vars, like:
-		// var one = 1;
+    //  }
+    }
 
-	 /**
-	 * Setup - this is where you get things ready before running the loop
-	 */
-		function setup() {
-			// this tells p5 that we are not using the
-			// `<canvas>` element (more on that later)
-			noCanvas();
-		}
+    /**
+     * Here's the draw loop! This is where all the fun stuff happens.
+     */
+    function draw() {
+      // this will continue to loop
+     if (column < totalColumn) {
+       console.log(output);
+      if (column % 2 == 0) {
+         output = "===-...-.-.--" + "..-.....--.-...===";
+         elementClass = "one";
+       } else if (column % 3 == 0){
+         output ="===---.....-.---.-"+ "--.---.-----.-...===";
+         elementClass = "two";
+       } else if (column % 5 == 0){
+         output = "===..--.---.--."+ "--.-....--..--...===";
+         elementClass = "two";
+       } else if (column % 7 == 0){
+         output = "===.///...\\\\\\...///..===";
+       } else {
+         output = "===.\\\...//////...\\\..===";
+       }
+     }
+       createDiv(output);
+       element = createElement('span', output);
+       element.addClass(elementClass);
+       column = column + 1;
+       console.log(line_Number);
+       output = "";
+       line_Number = 0;
+       }
 
-		/**
-		 * Here's the draw loop! This is where all the fun stuff happens.
-		 */
-		function draw() {
-			// this will continue to loop
-		}
 
-		// now leaving the land of javascript...
-		</script>
-		<!-- back to HTML -->
+    // now leaving the land of javascript...
+    </script>
+    <!-- back to HTML -->
+    <style>
+      body {
+        padding: 10px;
+        margin: 0;
+        font-family: 'Futura', 'Helvetica', 'Arial', sans-serif;
+        font-size: -100%;
+        color: #b2e0e0;
+        line-height: 25%;
+        text-align: center;
+      }
+      .one {
+        color: #009999;
+        font-family: 'Arvo', serif;
+      }
+      .two {
+        color: #ff5050;
+        font-family: 'Arvo', serif;
+        line-height: 20%;
+        letter-spacing: -2px;
+        text-align: justify;
+      }
+      #h3 {
+           text-align: inherit;
+           line-height: -300px;
+           letter-spacing: -5px;
+           color: #ffff99;
 
-		<style>
-			body {
-				padding: 0;
-				margin: 0;
-				font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
-				font-size: 200%;
-			}
-		</style>
+      }
+    </style>
 
-	</head>
+  </head>
 
-	<!-- a body for the meat/data/content -->
-	<body>
-
-	</body>
+  <!-- a body for the meat/data/content -->
+  <body>
+  </body>
 
 </html>
