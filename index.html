@@ -17,7 +17,12 @@
 
 		// here is where you declare your vars, like:
 		var lineNumber = 0;
-		var maxLines = 20;
+		var maxLines = 510;
+		var output = '';
+		var characters = []
+
+
+
 
 
 	 /**
@@ -40,25 +45,37 @@
 			if (lineNumber < maxLines) {
 
 					if(lineNumber == 0) {
-						output = "Hello";
-				}
+						console.log("first if statement")
+						output = "&#10703";
+						htmlTag = 'h1';
+						cssClass = 'introduction';
 
-					else if(lineNumber == 1) {
-						output = "Good Bye";
-				}
+					} else if(lineNumber == maxLines-1) {
+						output = "&#10704";
 
-					else if(lineNumber == 2) {
-							output = "No";
-				}
+					} else if((lineNumber + 1) % 4) {
+						console.log("third if statement")
+						output = "&#8624";
 
-					console.log(output);
-					lineNumber = lineNumber + 1;
-				}
+
+					} else if((lineNumber + 1.5) % 6) {
+						output = "&#8600";
+
+
+					}	else{
+							output = "&#8626";
+						}
+
+
+				console.log(output);
+				var element = createElement('span', output);
+				element.style("color", "#8181F7");
+				lineNumber = lineNumber + 1;
+
 			}
 
 
-
-
+}
 
 
 			//we want to programmatically
@@ -71,11 +88,19 @@
 
 		<style>
 			body {
-				padding: 0;
-				margin: 0;
+				padding: 50px;
+				margin: 50px;
+				word-wrap: break-word;
+				line_height: 0.9em;
+				letter-spacing: 20px
+				color: #777;
+				background: #F6CECE;
 				font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
-				font-size: 200%;
-			}
+				font-size: 300%;
+
+
+}
+
 		</style>
 
 	</head>
