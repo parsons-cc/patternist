@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<!-- a head for all the heady/conceptual/meta stuff -->
+	<head>
+
+		<title>JavaScript Exercise #4</title>
+
+		<!-- this imports p5  -->
+		<script language="javascript" type="text/javascript" src="../p5/p5.min.js"></script>
+		<script language="javascript" type="text/javascript" src="../p5/addons/p5.dom.js"></script>
+
+		<!-- here's your sketch! -->
+		<script>
+		// -------------------------------------------------------------------------
+		// we're in javascript land now!
+		// (notice the different style of comments)
+
+		// set up our vars here
+
+		// this variable will keep track of what line we're on
+		var currentLine = 0;
+		// this is the total number of lines
+		var totalLines = 50;
+		// this is our output
+		var output = "";
+
+
+		function setup() {
+			// this tells p5 that we are not using the `canvas` element
+			noCanvas();
+		}
+
+		// this is our function for outputting the html
+		function outputHtml(htmlTag, htmlContent, cssClass) {
+
+			// create the p5 element and add the html tag to the page
+			var element = createDiv(htmlTag, htmlContent);
+
+			// add a css class to the element
+			element.addClass(cssClass);
+
+			// return the element so we can use it somewhere else
+			return element;
+
+
+
+		// this is fired on every new frame.
+		function draw() {
+
+			// if we haven't reached our total number of lines
+			if(currentLine < totalLines) {
+
+				// if the current line is 0
+				if(currentLine == 0) {
+
+					// use our function to output the element
+					outputHtml('h1', 'Hello!', 'greeting');
+
+				// if it's the last line, print farewell
+				} else if ( currentLine == totalLines - 1) {
+
+					// use our function to output the element
+					outputHtml('p' 'Well goodbye then.' 'farewell');
+
+				// the % operator (also known as "modulus") gives us the remainder when
+				// dividing one number into another:
+				// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Arithmetic_Operators#Remainder
+				//
+				// so this will only be true if the current line is a multiple of 2
+				// (since then it won't have a remainder)
+				} else if ( currentLine % 2 == 0) {
+
+					// use our function to output the element
+					outputHtml('span', "... are you there?...", '');
+
+
+				// same as above, but a multiple of three
+				// http://copypastecharacter.com/
+				} else if ( currentLine % 3 == 0) {
+
+					// use our function to output the element, and return it so we
+					// can keep manipulating it
+					var thisElement = outputHtml('span', "... &#9835;&#9834;&#9836; ...", '');
+
+					thisElement.addClass("anotherClass");
+					thisElement.style("color", "blue");
+
+				// if we're over halfway done
+				} else if ( currentLine > totalLines / 2) {
+
+					// use our function to output the element
+					outputHtml('span', "Hello?", '');
+
+				// otherwise, our default option
+				} else {
+
+					// use our function to output the element
+					outputHtml('span', "It's me!", 'introduction');
+
+				}
+
+				// increase the line number
+				currentLine = currentLine + 1;
+			}
+		}
+
+		// now leaving the land of javascript...
+		// -------------------------------------------------------------------------
+		</script>
+		<!-- back to HTML -->
+
+		<style>
+			body {
+				padding: 0;
+				margin: 0;
+
+				/* notice custom styles here */
+				font-size: 200%;
+				font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+			}
+
+			/**
+			 * Using class selector to apply CSS rules
+			 *
+			 * http://www.tizag.com/cssT/class.php
+			 */
+			.greeting {
+				font-weight: bold;
+				font-size: 300%;
+				font-family: "Georgia";
+			}
+			.introduction {
+				color: red;
+			}
+			.farewell {
+				font-style: italic;
+			}
+
+			.red {
+				color: red;
+			}
+		</style>
+
+	</head>
+
+	<!-- since we're using JavaScript, we can leave the body empty -->
+	<body>
+
+		<!-- <p>One</p>
+		<p class="red">Two</p>
+		<p>Three</p> -->
+
+	</body>
+
+</html>
