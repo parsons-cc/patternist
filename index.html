@@ -20,7 +20,7 @@
 		var maxLines = 510;
 		var output = '';
 		var characters = []
-
+		var characterColor = "";
 
 
 
@@ -47,29 +47,34 @@
 					if(lineNumber == 0) {
 						console.log("first if statement")
 						output = "&#10703";
+						characterColor = "#FF0000";
 						htmlTag = 'h1';
 						cssClass = 'introduction';
 
 					} else if(lineNumber == maxLines-1) {
 						output = "&#10704";
+						characterColor = "#3399FF";
 
 					} else if((lineNumber + 1) % 4) {
 						console.log("third if statement")
 						output = "&#8624";
+						characterColor = "#660066";
 
 
 					} else if((lineNumber + 1.5) % 6) {
 						output = "&#8600";
+						characterColor = "#3399FF";
 
 
 					}	else{
 							output = "&#8626";
+							characterColor = "#FF0000";
 						}
 
 
 				console.log(output);
 				var element = createElement('span', output);
-				element.style("color", "#8181F7");
+				element.style("color", characterColor);
 				lineNumber = lineNumber + 1;
 
 			}
