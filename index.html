@@ -13,9 +13,12 @@
 		<!-- here's your sketch! -->
 		<script>
 		var lineNumber = 0;
-		var maxLines = 50;
+		var maxLines = 400;
     var columnNumber = 0;
     var maxColumn = 100;
+    var columnPercent;
+    var linePercent;
+    var progress;
 		var output = '';
 		// we're in javascript land now!
 		// (notice the different style of comments)
@@ -25,6 +28,7 @@
 	 * Setup - this is where you get things ready before running the loop
 	 */
 		function setup() {
+
 			// this tells p5 that we are not using the
 			// `<canvas>` element (more on that later)
 			noCanvas();
@@ -35,6 +39,7 @@
 		function draw() {
 			// this will continue to loop
 			if (lineNumber < maxLines) {
+        linePercent = lineNumber / maxLines;
 
 				var htmlTag = "div";
 				var cssClass = '';
@@ -44,16 +49,18 @@
 
 
           while (columnNumber < maxColumn) {
-            if (columnNumber < 20) {
-            output = output + "/";
-          } else if (columnNumber < 40) {
+            columnPercent = columnNumber / maxColumn;
+            progress = (linePercent + columnPercent) / 3;
+            if (progress < 0.1) {
             output = output + "|";
-          } else if (columnNumber < 60) {
-            output = output + "/";
-          } else if (columnNumber < 80) {
+          } else if (progress < 0.3) {
+            output = output + ":";
+          } else if (progress < 0.5) {
             output = output + "|";
+          } else if (progress < 0.8) {
+            output = output + ":";
           } else {
-            output = output + "/";
+            output = output + "|";
           }
           columnNumber = columnNumber + 1;
           }
