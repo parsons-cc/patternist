@@ -4,7 +4,7 @@
 
 	<head>
 
-		<title>Cameron Priestley</title>
+		<title>JavaScript Exercise #3</title>
 
 
 		<script language="javascript" type="text/javascript" src="../p5/p5.min.js"></script>
@@ -15,15 +15,34 @@
 
 		var currentLine = 0;
 
-		var totalLines = 327.3;
+		var totalLines = 3020;
 
-		var output = "";
+		var characters = [
+			"/",
+			"/",
+			"/",
+			"/",
+			"/",
+			"/",
+			"/",
+			"/"
+		];
 
+	 var x, y;
+var characters = ellipse;
 
-
+		function outputHTML (lastColor, randColor) {
+				return lastColor * randColor;
+		}
 
 		function setup() {
-			canvas
+		createCanvas(1000,500);
+		background(0);
+		x = width /2;
+		y = height;
+
+			lastColor = color(255, 0 , 0);
+
 
 
 		}
@@ -31,104 +50,86 @@
 
 
 		function draw() {
+			background(0);
+			ellipse(x, y, 500, 500);
 
+			x = x + random (-1, 1);
+			y = y -10;
+			if (y<0) {
+				y = height;
+			}
 
-
-
-			var elementTag = "span";
-
-			var elementClass = "";
 
 
 			if(currentLine < totalLines) {
 
+				index = ceil(random(characters.length));
 
-				if(currentLine == 0) {
-					output = "===========";
-					elementClass = "greeting";
-					elementTag = 'h1';
-
-
-				} else if ( currentLine == totalLines - 1) {
-					output = "/";
-					elementClass = "*";
-					elementTag = 'p';
-
-
-				} else if ( currentLine % 2 == 0) {
-					output = "... /...";
-
-
-				} else if ( currentLine % 3 == 0) {
-
-
-					output = "..._______...";
-
-
-				} else if ( currentLine > totalLines / 2) {
-					output = "*";
-
-
-				} else {
-					output = "*"
-					elementClass = "introduction";
-				}
-
-
-
-
-				element = createElement(elementTag, output);
-
-
-				element.addClass(elementClass);
+				var randColor = color(
+					ceil(random(255, 0, 0)),
+					ceil(random(255, 0, 0)),
+					ceil(random(255, 0, 0))
+				)
+				var newColor = lerpColor(lastColor, randColor, 1);
+				lastColor = newColor;
+				var element = createElement('span', characters[index]);
+				element.style("color", newColor.colorString);
 
 
 				currentLine = currentLine + 1;
+
+
+
 			}
 		}
+
+
 		</script>
-		<!-- back to HTML -->
+
 
 		<style>
+
+			div {
+				width:1000px;
+				height:1000px;
+				background: red;
+				-webkit-transition-property: width; /* Safari */
+				-webkit-transition-duration: 10s; /* Safari */
+				transition-property: width;
+				transition-duration: 10s;
+			}
+
+			div hover {
+				width: 10000px;
+			}
 			body {
-				background-color: #9fd6c2;
-
-
-
 				padding: 0;
-				margin: 100;
+				margin: 0;
+				text-align: center;
+				word-wrap: break-word;
 
 
-				font-size: 150%;
+				font-size: 300%;
+				line-height: 0.9em;
+				letter-spacing: 0px;
+				color: #333;
+				background-color: black;
 				font-family: 'Futura', 'Futura', 'Futura', sans-serif;
-				color: red;
 			}
 
-
-			.greeting {
-				font-weight: bold;
-				color: red;
-			}
-			.introduction {
-				color: red;
-			}
-			.farewell {
-				font-style: italic;
-				color: red;
-			}
 
 		</style>
 
 	</head>
 
-	
+
 	<body>
-
-
+		<marquee behavior="scroll" direction="left">CAMERON PRIESTLEY</marquee>
 
 	</body>
 
 </html>
+
 
 
 
