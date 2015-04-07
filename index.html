@@ -4,34 +4,113 @@
 	<!-- a head for all the heady/conceptual/meta stuff -->
 	<head>
 
-		<title>My Pattern</title>
+		<title><!-- your title goes here --></title>
 
 		<!-- this imports p5  -->
-		<script language="javascript" type="text/javascript" src="p5/p5.min.js"></script>
-		<script language="javascript" type="text/javascript" src="p5/addons/p5.dom.js"></script>
+		<script language="javascript" type="text/javascript" src="../p5/p5.min.js"></script>
+		<script language="javascript" type="text/javascript" src="../p5/addons/p5.dom.js"></script>
 
 		<!-- here's your sketch! -->
 		<script>
 		// we're in javascript land now!
 		// (notice the different style of comments)
 
-		// here is where you declare your vars, like:
-		// var one = 1;
+		// set up our vars here
+		var line;
+		var column;
+		var total_columns;
+		var total_lines;
+		var line_percent;
+		var column_percent;
+		var progress;
+		var output;
+    var elementClass;
 
-	 /**
-	 * Setup - this is where you get things ready before running the loop
-	 */
 		function setup() {
-			// this tells p5 that we are not using the
-			// `<canvas>` element (more on that later)
-			noCanvas();
+
+			// we're starting on the first line
+			line = 0;
+			// and the first column
+			column = 0;
+
+			// set our limits
+			total_columns = 40;
+			total_lines = 100;
+
+			//
+			output = '';
+
+			// this tells p5 that we are not using the `canvas` element
+			createCanvas(5,5);
 		}
 
-		/**
-		 * Here's the draw loop! This is where all the fun stuff happens.
-		 */
+
+		// this is fired on every new frame.
 		function draw() {
-			// this will continue to loop
+
+			// if we haven't reached our total number of lines
+			if(line < total_lines) {
+
+				// figure out how far along we are in lines
+				// (will be a number between 0 and 1)
+				line_percent = line / total_lines;
+
+				// loop through while there's still columns left!
+				// this will loop through and add a character to the end
+				// of the output string.
+				while(column < total_columns) {
+
+					// figure out how far long we are in columns
+					// (also a number between 0 and 1)
+					column_percent = column / total_columns;
+
+					// total progress of lines and columns
+					// (still a number between 0 and 1)
+					progress = (line_percent + column_percent) / 2;
+
+					// if we're less than 10% done
+					if(progress < 0.1) {
+						output = output + 'MirrorMirror';
+            elementClass = "two";
+					// else if we're less than 30% done
+				} else if (progress < 0.1) {
+						output = output + 'OnTheWall';
+            elementClass = "three";
+					// else if we're less than 50%
+				} else if (progress < 0.8) {
+						output = output + 'WhoIsTheFairest';
+            elementClass = "two";
+					// if we're less than 80%...
+				} else if (progress < 0.1) {
+						output = output + 'OfThemAll';
+            elementClass = "three";
+					// otherwise...
+					} else {
+						output = output + "Muahahaha";
+					}
+
+					// add a space at the end
+					output = output + ' ';
+
+					// increment our value for `column` so we don't end up
+					// in an infinite loop!
+					column = column + 1;
+				}
+
+				// output to the console!
+				createDiv(output);
+
+				element = createElement('span', output);
+        element.addClass(elementClass);
+				// reset our output and column vars
+				output = '';
+				column = 0;
+
+				// increment our value for `line` so we don't end up
+				// in an infinite loop!
+				line = line + 1;
+
+			}
 		}
 
 		// now leaving the land of javascript...
@@ -41,12 +120,19 @@
 		<style>
 			body {
 				padding: 0;
-				margin: 0;
+				margin: 0,15,20,0;
 				font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
-				font-size: 200%;
+				text-align: center;
+				font-size: 5px;
+		    background-color: black;
+		}
+			.two {
+				color: red;
+			}
+      .three {
+				color: pink;
 			}
 		</style>
-
 	</head>
 
 	<!-- a body for the meat/data/content -->
@@ -55,3 +141,4 @@
 	</body>
 
 </html>
+
