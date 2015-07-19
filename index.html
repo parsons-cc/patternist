@@ -16,12 +16,22 @@
 		// (notice the different style of comments)
 
 		// here is where you declare your vars, like:
-		// var one = 1;
+		var lineNumber = 0;
+		var maxLines = 510;
+		var output = '';
+		var characters = []
+		var characterColor = "";
+
+
+
 
 	 /**
 	 * Setup - this is where you get things ready before running the loop
 	 */
 		function setup() {
+
+
+
 			// this tells p5 that we are not using the
 			// `<canvas>` element (more on that later)
 			noCanvas();
@@ -32,7 +42,50 @@
 		 */
 		function draw() {
 			// this will continue to loop
-		}
+			if (lineNumber < maxLines) {
+
+					if(lineNumber == 0) {
+						console.log("first if statement")
+						output = "&#10703";
+						characterColor = "#FF0000";
+						htmlTag = 'h1';
+						cssClass = 'introduction';
+
+					} else if(lineNumber == maxLines-1) {
+						output = "&#10704";
+						characterColor = "#3399FF";
+
+					} else if((lineNumber + 1) % 4) {
+						console.log("third if statement")
+						output = "&#8624";
+						characterColor = "#660066";
+
+
+					} else if((lineNumber + 1.5) % 6) {
+						output = "&#8600";
+						characterColor = "#3399FF";
+
+
+					}	else{
+							output = "&#8626";
+							characterColor = "#FF0000";
+						}
+
+
+				console.log(output);
+				var element = createElement('span', output);
+				element.style("color", characterColor);
+				lineNumber = lineNumber + 1;
+
+			}
+
+
+}
+
+
+			//we want to programmatically
+			//add a row of 100 characters
+
 
 		// now leaving the land of javascript...
 		</script>
@@ -40,11 +93,19 @@
 
 		<style>
 			body {
-				padding: 0;
-				margin: 0;
+				padding: 50px;
+				margin: 50px;
+				word-wrap: break-word;
+				line_height: 0.9em;
+				letter-spacing: 20px
+				color: #777;
+				background: #F6CECE;
 				font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
-				font-size: 200%;
-			}
+				font-size: 300%;
+
+
+}
+
 		</style>
 
 	</head>
